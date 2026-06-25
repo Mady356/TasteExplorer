@@ -60,9 +60,11 @@ def _zscore_normalize(matrix: List[List[float]]) -> List[List[float]]:
 
     return normalized
 
+def _cosine_similarity(a, b):
+    a = np.array(a)
+    b = np.array(b)
 
-def _euclidean_distance(a: List[float], b: List[float]) -> float:
-    return math.sqrt(sum((x - y) ** 2 for x, y in zip(a, b)))
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 
 def build_track_similarity_graph(records: List[Dict], k: int = 3) -> Tuple[Dict[str, Dict], Dict[str, List[Dict]]]:
@@ -89,20 +91,20 @@ def build_track_similarity_graph(records: List[Dict], k: int = 3) -> Tuple[Dict[
     adjacency: Dict[str, List[Dict]] = {}
 
     for i, track_id in enumerate(track_ids):
-        distances = []
+        similarity = []
 
         for j, other_track_id in enumerate(track_ids):
             if i == j:
                 continue
 
-            dist = _euclidean_distance(normalized_matrix[i], normalized_matrix[j])
-            distances.append({
+            sim = _cosine_similarity(normalized_matrix[i], normalized_matrix[j])
+            similarity.append({
                 "neighbor_track_id": other_track_id,
-                "distance": dist
+                "similairty": sim
             })
 
-        distances.sort(key=lambda x: x["distance"])
-        adjacency[track_id] = distances[:k]
+        similarity.sort(key=lambda x: x["similarity"])
+        adjacency[track_id] = similarity[:k]
 
     return track_lookup, adjacency
 
