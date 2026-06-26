@@ -321,7 +321,7 @@ class Recommendation(Base):
 
     # Explanation
     explanation = Column(Text, nullable=True)  # Human-readable explanation
-    metadata = Column(JSON, nullable=True)  # Additional context (similar_to, cluster_id, etc.)
+    recommendation_metadata = Column("metadata", JSON, nullable=True)  # Additional context (similar_to, cluster_id, etc.)
 
     # Timestamps
     generated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
@@ -356,7 +356,7 @@ class TasteCluster(Base):
     representative_artists = Column(JSON, nullable=True)  # List of artist IDs
 
     # Metadata
-    metadata = Column(JSON, nullable=True)  # Additional context
+    cluster_metadata = Column("metadata", JSON, nullable=True)  # Additional context
 
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)

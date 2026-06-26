@@ -9,18 +9,28 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
-# Load environment variables
-env_path = Path(__file__).parent.parent.parent / '.env'
-if env_path.exists():
-    load_dotenv(env_path)
+# Load environment variables - try apps/api/.env first, then root .env
+api_env_path = Path(__file__).parent / '.env'
+root_env_path = Path(__file__).parent.parent.parent / '.env'
+
+if api_env_path.exists():
+    load_dotenv(api_env_path)
+    logger = logging.getLogger(__name__)
+    print(f"Loaded environment from: {api_env_path}")
+elif root_env_path.exists():
+    load_dotenv(root_env_path)
+    logger = logging.getLogger(__name__)
+    print(f"Loaded environment from: {root_env_path}")
 else:
     # Try loading from current directory
     load_dotenv()
+    print("Loaded environment from current directory or system env")
 
 from database.database import init_db
 from auth.routes import router as auth_router
 from user.routes import router as user_router
 from spotify.routes import router as spotify_router
+from demo.routes import router as demo_router
 
 # Configure logging
 logging.basicConfig(
@@ -51,10 +61,14 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS middleware
+# CORS middleware - allow frontend to connect
+# In production, set CORS_ORIGINS env var to your deployed frontend URL
+cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+logger.info(f"CORS enabled for origins: {cors_origins}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.getenv("CORS_ORIGINS", "http://localhost:3000").split(","),
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -64,6 +78,7 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(user_router, prefix="/users", tags=["users"])
 app.include_router(spotify_router, prefix="/spotify", tags=["spotify"])
+app.include_router(demo_router, prefix="/demo", tags=["demo"])
 
 
 @app.get("/")
@@ -78,8 +93,17 @@ async def root():
 
 @app.get("/health")
 async def health():
-    """Health check endpoint."""
-    return {"status": "healthy"}
+    """
+    Health check endpoint.
+
+    Used by deployment platforms (Render, Railway, etc.) to verify service health.
+    """
+    return {
+        "status": "healthy",
+        "service": "tasteexplorer-api",
+        "version": "0.1.0",
+        "environment": os.getenv("ENVIRONMENT", "development"),
+    }
 
 
 if __name__ == "__main__":

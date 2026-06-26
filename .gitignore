@@ -80,3 +80,6 @@ htmlcov/
 .cache/
 *.bak
 *.tmp
+.env
+apps/api/.env
+*.db

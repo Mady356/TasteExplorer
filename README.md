@@ -482,15 +482,37 @@ For questions or issues:
 ✅ REST API with full documentation
 ✅ Modern, responsive UI
 ✅ Dark mode support
-✅ Mock recommendation system
+✅ 3-layer graph-based recommendation engine (Layers 1, 2, 3)
 ✅ Docker development environment
+✅ Production-ready deployment configs
 
 🚧 **To Be Implemented:**
-- Custom recommendation engine
 - Graph visualization
 - Advanced analytics
 - Testing suite
-- Production deployment
+
+---
+
+## 🚀 Deployment
+
+Ready to deploy to production?
+
+**Quick Deploy:**
+- Frontend → Vercel (free tier)
+- Backend → Render or Railway (free tier)
+- Database → Supabase or Railway (free tier)
+
+**Complete deployment guide:** See [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+**Quick checklist:** See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)
+
+**What you need:**
+- GitHub account (for repo)
+- Spotify Developer account (for API keys)
+- Vercel account (for frontend)
+- Render or Railway account (for backend + database)
+
+**Deployment time:** ~20 minutes following the guide
 
 ---
 

@@ -30,8 +30,19 @@ async def spotify_login():
     Returns:
         Redirect to Spotify authorization page
     """
+    # Debug: Print environment variables
+    print("=" * 60)
+    print("Spotify OAuth Debug Info:")
+    print(f"Spotify Client ID: {os.getenv('SPOTIFY_CLIENT_ID')}")
+    print(f"Spotify Redirect URI: {os.getenv('SPOTIFY_REDIRECT_URI')}")
+    print("=" * 60)
+
     auth_manager = create_oauth_manager()
     auth_url = auth_manager.get_authorize_url()
+
+    print(f"Generated auth URL: {auth_url}")
+    print("=" * 60)
+
     return RedirectResponse(url=auth_url)
 
 

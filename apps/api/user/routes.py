@@ -397,7 +397,7 @@ async def get_recommendations(
                 score=rec.score,
                 rank=rec.rank,
                 explanation=rec.explanation,
-                metadata=rec.metadata,
+                metadata=rec.recommendation_metadata,
                 spotify_url="https://open.spotify.com/artist/mock"
             )
             for rec in recommendations["artists"]
@@ -411,7 +411,7 @@ async def get_recommendations(
                 score=rec.score,
                 rank=rec.rank,
                 explanation=rec.explanation,
-                metadata=rec.metadata,
+                metadata=rec.recommendation_metadata,
                 spotify_url="https://open.spotify.com/track/mock"
             )
             for rec in recommendations["tracks"]

@@ -45,6 +45,12 @@ export default function LandingPage() {
               <ArrowRight className="h-3.5 w-3.5" />
             </a>
             <Link
+              href="/demo"
+              className="inline-flex items-center gap-2 px-5 py-2 border border-border text-sm font-medium hover:bg-muted transition-colors"
+            >
+              Try Demo
+            </Link>
+            <Link
               href="/architecture"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >

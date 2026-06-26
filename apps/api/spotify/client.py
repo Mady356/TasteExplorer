@@ -2,11 +2,17 @@
 import os
 from typing import Optional, Dict, List
 from datetime import datetime, timedelta
+from pathlib import Path
+from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 from sqlalchemy.orm import Session
 
 from database.models import SpotifyProfile
+
+# Load environment variables from apps/api/.env
+env_path = Path(__file__).parent.parent / '.env'
+load_dotenv(env_path)
 
 
 class SpotifyClient:
