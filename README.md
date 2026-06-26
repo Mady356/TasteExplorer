@@ -6,7 +6,7 @@ TasteExplorer analyzes your Spotify listening history to build a personalized ta
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 ### Problem
 Existing music recommendation systems (Spotify, Apple Music) often recommend popular or generic songs. They struggle to understand niche taste clusters and nuanced user preferences.
@@ -20,7 +20,7 @@ TasteExplorer provides:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 tasteexplorer/
@@ -67,7 +67,7 @@ tasteexplorer/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -175,7 +175,7 @@ Frontend runs on http://localhost:3000
 
 ---
 
-## 📊 Database Schema
+##  Database Schema
 
 ### Core Tables
 
@@ -220,7 +220,7 @@ Full API documentation: http://localhost:8000/docs
 
 ---
 
-## 🧠 Recommendation Engine Interface
+## Recommendation Engine Interface
 
 The recommendation engine is **NOT implemented** - only the interface is provided.
 
@@ -423,49 +423,14 @@ The following components need manual implementation:
 
 ---
 
-## 🎯 Next Steps
-
-1. **Implement Recommendation Engine**
-   - Start with `RecommendationEngine.build_user_profile()`
-   - Build track similarity graph
-   - Implement clustering algorithm
-
-2. **Add Graph Visualization**
-   - Integrate React Flow or D3.js
-   - Connect to API graph endpoint
-   - Add interactive controls (zoom, pan, filter)
-
-3. **Enhance UI**
-   - Add loading skeletons
-   - Implement error boundaries
-   - Add toast notifications
-   - Polish animations
-
-4. **Testing**
-   - Unit tests for API endpoints
-   - Integration tests for data pipeline
-   - E2E tests for user flows
-
-5. **Deployment**
-   - Set up CI/CD with GitHub Actions
-   - Configure production environment
-   - Add monitoring and logging
-
----
-
-## 📝 Contributing
-
-This is a personal project. The recommendation engine implementation is intentionally left blank for manual development.
-
----
-
-## 📄 License
+ 
+##  License
 
 MIT License
 
 ---
 
-## 🤝 Support
+## Support
 
 For questions or issues:
 1. Check API documentation: http://localhost:8000/docs
@@ -474,17 +439,17 @@ For questions or issues:
 
 ---
 
-## 🎉 Features
+##  Features
 
-✅ Spotify OAuth integration
-✅ Data ingestion pipelines
-✅ Normalized database schema
-✅ REST API with full documentation
-✅ Modern, responsive UI
-✅ Dark mode support
-✅ 3-layer graph-based recommendation engine (Layers 1, 2, 3)
-✅ Docker development environment
-✅ Production-ready deployment configs
+Spotify OAuth integration
+Data ingestion pipelines
+Normalized database schema
+REST API with full documentation
+Modern, responsive UI
+Dark mode support
+3-layer graph-based recommendation engine (Layers 1, 2, 3)
+Docker development environment
+Production-ready deployment configs
 
 🚧 **To Be Implemented:**
 - Graph visualization
