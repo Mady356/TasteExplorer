@@ -23,4 +23,4 @@ python-dotenv==1.0.1
 httpx==0.28.0
 
 # Recommender system (Layer 1 clustering)
-scikit-learn==1.9.0
+scikit-learn==1.5.2
